@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Receipt Generator - Login</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="login-container">
+      <h1>Receipt Generator</h1>
+      <div class="card">
+        <div class="card-header">
+          <h2>Login</h2>
+          <p>Enter your credentials to access the receipt generator</p>
+        </div>
+        <div class="card-body">
+          <div id="error-message" class="error-message hidden"></div>
+          <form id="login-form">
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+              <button type="submit" id="login-button">Login</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('login-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const errorMessage = document.getElementById('error-message');
+      const loginButton = document.getElementById('login-button');
+      
+      loginButton.textContent = 'Logging in...';
+      loginButton.disabled = true;
+      errorMessage.classList.add('hidden');
+      
+      if (username === 'Ace1000' && password === '4mmTdme9fHSE') {
+        localStorage.setItem('isLoggedIn', 'true');
+        setTimeout(() => {
+          window.location.href = 'receipt.html';
+        }, 1000);
+      } else {
+        errorMessage.textContent = 'Invalid username or password';
+        errorMessage.classList.remove('hidden');
+        loginButton.textContent = 'Login';
+        loginButton.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
